@@ -1,25 +1,31 @@
 doctype html
 html
 	head
-		title= title || 'My Site'
+		title= title || 'Dimpl'
 		meta(charset='utf8')
 		meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		meta(http-equiv='X-UA-Compatible' content='IE=edge')
+		//- meta(name='viewport' content='width
+		link(rel='stylesheet' href='style.css')
+		link(rel='stylesheet' href='//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
 		block styles
-			link(rel='stylesheet' href='style.css')
-			link(rel='stylesheet' href='//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
 		block scripts
 	body
 		nav.navbar.navbar-expand-lg.navbar.bg-white.shadow-sm.border-bottom.mb-5
 			.container
-				a.navbar-brand.text-dark(href='#') My Project
+				a.navbar-brand.text-dark(href='/') Dimpl
 				button.navbar-toggler(type='button' data-toggle='collapse' data-target='#topNavbar' aria-controls='topNavbar' aria-expanded='false' aria-label='Toggle navigation')
 					span.navbar-toggler-icon
 				#topNavbar.collapse.navbar-collapse
 					ul.navbar-nav.mr-auto
 						li.nav-item.active
-							a.nav-link.text-dark(href='#') Home 
+							a.nav-link.text-dark(href='/') Home 
 						li.nav-item
-							a.nav-link.text-dark(href='#') Link
+							a.nav-link.text-dark(href='/profile') Profile 
+						li.nav-item
+							a.nav-link.text-dark(href='/listing') Listings 
+						li.nav-item
+							a.nav-link.text-dark(href='/login') Metamask
 		.container
 			.row
 				.col-md-4
