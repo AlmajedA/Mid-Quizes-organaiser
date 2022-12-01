@@ -24,16 +24,47 @@ html
 							a.nav-link.text-dark(href='/profile') Profile 
 						li.nav-item
 							a.nav-link.text-dark(href='/listing') Listings 
-						li.nav-item
-							a.nav-link.text-dark(href='/login') Metamask
+						//- li.nav-item
+						//- 	a.nav-link.text-dark(href='/login') Metamask
+
+					button.nav-link.text-dark.btn.btn-link.inline(type='button' id='loginMetamask') Metamask 
+						sub#connection (Not Connected)
 		.container
-			.row
-				.col-md-4
-					block body
-			.row
-				.col-md-4
-					block footer		
+			
+			block body
+			
+			block footer		
 
 		script(src='//code.jquery.com/jquery-3.3.1.slim.min.js')
 		script(src='//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
 		script(src='//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
+		script. 
+				
+				window.userWalletAddress = null
+				const loginButton = document.getElementById('loginMetamask')
+				const userWallet = document.getElementById('connection')
+				function toggleButton() {
+					if (!window.ethereum) {
+						loginButton.innerText = 'MetaMask is not installed'
+						loginButton.classList.remove('bg-pink-500', 'text-white')
+						loginButton.classList.add('bg-gray-500', 'text-gray-100', 'cursor-not-allowed')
+						return false
+					}
+					loginButton.addEventListener('click', loginWithMetaMask)
+				}
+				async function loginWithMetaMask() {
+					const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' }).catch((e) => {
+						console.error(e.message)
+						return
+					})
+					if (!accounts) { return }
+					window.userWalletAddress = accounts[accounts.length - 1];
+					userWallet.innerText = '(Connected)'
+					
+				}
+
+				
+				window.addEventListener('DOMContentLoaded', (event) => {
+					toggleButton();
+				}); 
+
