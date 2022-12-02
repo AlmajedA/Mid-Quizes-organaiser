@@ -26,9 +26,10 @@ html
 							a.nav-link.text-dark(href='/listing') Listings 
 						//- li.nav-item
 						//- 	a.nav-link.text-dark(href='/login') Metamask
-
+					
 					button.nav-link.text-dark.btn.btn-link.inline(type='button' id='loginMetamask') Metamask 
 						sub#connection (Not Connected)
+					button.nav-link.text-dark.btn.btn-link.inline(type='button' id='loginMetamask') Sign in 
 		.container
 			
 			block body
@@ -40,9 +41,9 @@ html
 		script(src='//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
 		script. 
 				
-				window.userWalletAddress = null
-				const loginButton = document.getElementById('loginMetamask')
-				const userWallet = document.getElementById('connection')
+				window.userWalletAddress = null;
+				const loginButton = document.getElementById('loginMetamask');
+				const userWallet = document.getElementById('connection');
 				function toggleButton() {
 					if (!window.ethereum) {
 						loginButton.innerText = 'MetaMask is not installed'
@@ -50,7 +51,10 @@ html
 						loginButton.classList.add('bg-gray-500', 'text-gray-100', 'cursor-not-allowed')
 						return false
 					}
-					loginButton.addEventListener('click', loginWithMetaMask)
+					loginButton.addEventListener('click', loginWithMetaMask);
+					
+				
+					
 				}
 				async function loginWithMetaMask() {
 					const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' }).catch((e) => {
@@ -60,6 +64,7 @@ html
 					if (!accounts) { return }
 					window.userWalletAddress = accounts[accounts.length - 1];
 					userWallet.innerText = '(Connected)'
+					flag = true 
 					
 				}
 
