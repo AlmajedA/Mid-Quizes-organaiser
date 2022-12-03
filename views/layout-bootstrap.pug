@@ -39,6 +39,8 @@ html
 		script(src='//code.jquery.com/jquery-3.3.1.slim.min.js')
 		script(src='//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
 		script(src='//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
+
+		//- Login to metamask script:
 		script. 
 				
 				window.userWalletAddress = null;
@@ -52,9 +54,6 @@ html
 						return false
 					}
 					loginButton.addEventListener('click', loginWithMetaMask);
-					
-				
-					
 				}
 				async function loginWithMetaMask() {
 					const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' }).catch((e) => {
@@ -72,4 +71,50 @@ html
 				window.addEventListener('DOMContentLoaded', (event) => {
 					toggleButton();
 				}); 
+
+		//- Payment Script: 
+		script.
+			const purchaseBtn = document.getElementById('purchase');
+			purchaseBtn.addEventListener('click', (event) => {
+				if (window.userWalletAddress != null)
+					sendTransaction(event);
+				else 
+					window.alert("You are not connected to Metamask");
+				//- console.log("Hi")
+			})
+
+			function sendTransaction(event){
+				const priceString = document.getElementById('price').innerText;
+				const priceInt = priceString.match(/\d/g).join("");
+				const amount = parseInt(priceInt) * 1000000000000000000;
+				const sendTo = document.getElementById('to').innerText;
+				const hexString = amount.toString(16);
+				console.log(window.userWalletAddress)
+				console.log(sendTo)
+				console.log(hexString)
+				
+				ethereum.request({
+					method: 'eth_sendTransaction',
+					params:[
+						{
+							from: window.userWalletAddress,
+							
+							to: sendTo,
+							value: '0x' + hexString,
+							
+							
+						}
+					]
+				})
+				.then((txHach) => console.log(txHash))
+				.catch((error) => console.error)
+
+    		
+    
+    		
+            
+			}
+
+
+						
 
