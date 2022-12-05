@@ -3,25 +3,29 @@ extends layout-bootstrap
 block body
 	
 	.row
-		each item in context
-			- var listing = item.dataValues
-			- var title = listing.title
-			- var description = listing.description
-			- var author = listing.author_id
-			- var price = listing.price 
-			- var deposit = listing.deposit
-			- var status = listing.status
-			- var date = listing.createdAt 
+		- var listing = context.dataValues
+		- var title = listing.title
+		- var description = listing.description
+		- var author = listing.author_id
+		- var price = listing.price 
+		- var deposit = listing.deposit
+		- var status = listing.status
+		- var date = listing.createdAt 
 
-			.col-md-4.p-3
-				.card.mx-auto(style = "width: 18rem;")
-					img.card-img-top(src = 'https://www.visible.com/shop/assets/images/shop/catalogue/iPhone_12_mini_PUR_1.jpg')
-					.card-body
-						h5.card-title=title 
-						p.card-text=description
-						p.card-text= "Price : " + price
-						p.card-text= "Deposit : " + deposit
-						a.btn.btn-primary.mt-2(href='/listing/' + listing.id) More
+		
+		.row.d-md-flex.flex-md-equal.w-100.my-md-3.pl-md-3
+			.col-md.bg-dark.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.text-white.overflow-hidden
+				.my-3.py-3
+					h5.card-title=title 
+					p.card-text=description
+					p.card-text= "Price : " + price
+					p.card-text= "Deposit : " + deposit
+					p.card-text= "Date Posted : " + createdAt
+					p.card-text= "Author : " + author
+					p.card-text= "Status : " + status
+
+				img.img-fluid.m-2(src="https://www.visible.com/shop/assets/images/shop/catalogue/iPhone_12_mini_PUR_1.jpg" alt="" style = 'width: 80%; height: auto; border-radius: 21px 21px 21px 21px;')
+			
 	//- 	.col-md-4.p-3
 	//- 		.card.mx-auto(style = "width: 18rem;")
 	//- 			img.card-img-top(src = 'https://www.visible.com/shop/assets/images/shop/catalogue/iPhone_12_mini_PUR_1.jpg')

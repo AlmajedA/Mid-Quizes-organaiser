@@ -2,19 +2,26 @@ extends layout-bootstrap
 
 block body
 	
-	
 	.row
+		-var user = context.dataValues
+		-var username = user.username 
+		-var fullname = user.full_name 
+		-var phone = user.phone_number
+		-var address = user.address 
+		-var wallet = user.wallet_address 
+
 		.col-md-3
-			img.rounded-circle.img-fluid(src='https://img.freepik.com/premium-vector/man-profile-cartoon_18591-58482.jpg?w=2000' style="height: 100%; width: 100%;")
+			//- img.rounded-circle.img-fluid(src='https://img.freepik.com/premium-vector/man-profile-cartoon_18591-58482.jpg?w=2000' style="height: 100%; width: 100%;")
+			img.rounded-circle.img-fluid(src='https://xsgames.co/randomusers/avatar.php?g=pixel' style="height: 100%; width: 100%;")
 		.col-md-9.align-self-center
-			h2.text-md-left Ammar Almajed (AlmajedA)
-			p(style ='font-size: 1.5em') My Wallet Address : 
+			h2.text-md-left= fullname + ' (' + username + ')'
+			p(style ='font-size: 1.5em')= "Wallet Address : " + wallet 
 
 			.row 
 				.col-md 
-					p Address: Mir Hall 
+					p= "Address: " + address 
 				.col-md 
-					p Phone Number: +966 54 xxx xxxx
+					p= "Phone Number: " + phone
 
 
 	

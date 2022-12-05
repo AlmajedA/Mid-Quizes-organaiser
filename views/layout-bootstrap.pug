@@ -29,7 +29,7 @@ html
 					
 					button.nav-link.text-dark.btn.btn-link.inline(type='button' id='loginMetamask') Metamask 
 						sub#connection (Not Connected)
-					button.nav-link.text-dark.btn.btn-link.inline(type='button' id='loginMetamask') Sign in 
+					button.nav-link.text-dark.btn.btn-link.inline(type='button' id='signUp') Sign up 
 		.container
 			
 			block body
@@ -46,6 +46,8 @@ html
 				window.userWalletAddress = null;
 				const loginButton = document.getElementById('loginMetamask');
 				const userWallet = document.getElementById('connection');
+				const signUp = document.getElementById('signUp');
+
 				function toggleButton() {
 					if (!window.ethereum) {
 						loginButton.innerText = 'MetaMask is not installed'
@@ -63,17 +65,22 @@ html
 					})
 					if (!accounts) { return }
 					window.userWalletAddress = accounts[accounts.length - 1];
-					userWallet.innerText = '(Connected)'
+					userWallet.innerText = '(Connected)';
+					signUp.style.display = 'none';
 					
 					
 				}
 				async function checkConnection(){
 					const accounts = await ethereum.request({method: 'eth_accounts'}).catch(console.error)
 					window.userWalletAddress = accounts[accounts.length - 1];
-					if (window.userWalletAddress != null)
-						userWallet.innerText = '(Connected)'
-					else
-						userWallet.innerText = '(Not Connected)'
+					if (window.userWalletAddress != null) {
+						userWallet.innerText = '(Connected)';
+						signUp.style.display = 'none';
+						}
+					else {
+						userWallet.innerText = '(Not Connected)';
+						signUp.style.display = 'block';
+					}
 				}
 
 				window.addEventListener('DOMContentLoaded', (event) => {

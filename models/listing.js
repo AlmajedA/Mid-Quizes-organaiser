@@ -7,6 +7,18 @@ const Listing = sequelize.define('Listing', {
 	  },
 	description: {
 		type: DataTypes.TEXT
+	},
+	author_id: {
+		type: DataTypes.INTEGER
+	},
+	price: {
+		type: DataTypes.INTEGER
+	},
+	status: {
+		type: DataTypes.STRING
+	},
+	deposit: {
+		type: DataTypes.INTEGER
 	}
 })
 

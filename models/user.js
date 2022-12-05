@@ -32,6 +32,9 @@ const User = sequelize.define('User', {
 	},
 	address: {
 	  type: DataTypes.STRING,
+	},
+	wallet_address: {
+		type: DataTypes.STRING
 	}
   });
 

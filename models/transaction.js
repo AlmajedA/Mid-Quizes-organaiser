@@ -10,7 +10,14 @@ const Transaction = sequelize.define('Transaction', {
 	  },
 	is_complete: {
 		type: DataTypes.BOOLEAN,
-	  },
+	},
+	seller_id: {
+		type: DataTypes.INTEGER,
+	},
+	buyer_id: {
+		type: DataTypes.INTEGER
+	}
+	
 })
 
 module.exports = Transaction;
