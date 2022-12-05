@@ -54,6 +54,7 @@ html
 						return false
 					}
 					loginButton.addEventListener('click', loginWithMetaMask);
+					checkConnection();
 				}
 				async function loginWithMetaMask() {
 					const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' }).catch((e) => {
@@ -63,11 +64,18 @@ html
 					if (!accounts) { return }
 					window.userWalletAddress = accounts[accounts.length - 1];
 					userWallet.innerText = '(Connected)'
-					flag = true 
+					
 					
 				}
+				async function checkConnection(){
+					const accounts = await ethereum.request({method: 'eth_accounts'}).catch(console.error)
+					window.userWalletAddress = accounts[accounts.length - 1];
+					if (window.userWalletAddress != null)
+						userWallet.innerText = '(Connected)'
+					else
+						userWallet.innerText = '(Not Connected)'
+				}
 
-				
 				window.addEventListener('DOMContentLoaded', (event) => {
 					toggleButton();
 				}); 
@@ -78,40 +86,38 @@ html
 			purchaseBtn.addEventListener('click', (event) => {
 				if (window.userWalletAddress != null)
 					sendTransaction(event);
-				else 
-					window.alert("You are not connected to Metamask");
-				//- console.log("Hi")
+				else{ 
+					window.alert("You are not connected to Metamask");}
+				
 			})
 
-			function sendTransaction(event){
+			async function sendTransaction(event){
 				const priceString = document.getElementById('price').innerText;
 				const priceInt = priceString.match(/\d/g).join("");
 				const amount = parseInt(priceInt) * 1000000000000000000;
 				const sendTo = document.getElementById('to').innerText;
 				const hexString = amount.toString(16);
-				console.log(window.userWalletAddress)
-				console.log(sendTo)
-				console.log(hexString)
+				let confirm = false;
 				
-				ethereum.request({
+				let hash = await ethereum.request({
 					method: 'eth_sendTransaction',
 					params:[
 						{
 							from: window.userWalletAddress,
-							
 							to: sendTo,
 							value: '0x' + hexString,
+							data: '0x7f7465737432000000000000000000000000000000000000000000000000000000600057', // Optional, but used for defining smart contract creation and interaction.
 							
-							
+  						
 						}
 					]
 				})
-				.then((txHach) => console.log(txHash))
+				.then((txHach) => confirm = true)
 				.catch((error) => console.error)
-
-    		
-    
-    		
+				if (confirm){
+					window.location.href = '/succeed';
+				}
+				else{window.alert("The transaction has been rejected");}
             
 			}
 
