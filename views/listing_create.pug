@@ -1,0 +1,35 @@
+extends layout-bootstrap
+
+block body
+	h2 Create new listing
+	form(method="POST", action='/listing_create')
+		.form-group
+			label(for='inputEmail4') Title
+			input#inputEmail4.form-control(type='text', name='title')
+		.form-group
+			label(for='inputPassword4') Description
+			input#inputPassword4.form-control(type='text', name='description')
+		.form-group
+			label(for='inputAddress') Price
+			input#inputAddress.form-control(type='number', name='price')
+		.form-group
+			label(for='inputAddress2') Deposit
+			input#inputAddress2.form-control(type='number', name='deposit')
+		//- .form-row
+			.form-group.col-md-6
+			label(for='inputCity') City
+			input#inputCity.form-control(type='text')
+			.form-group.col-md-4
+			label(for='inputState') State
+			select#inputState.form-control
+				option(selected='') Choose...
+				option ...
+			.form-group.col-md-2
+			label(for='inputZip') Zip
+			input#inputZip.form-control(type='text')
+		//- .form-group
+			.form-check
+			input#gridCheck.form-check-input(type='checkbox')
+			label.form-check-label(for='gridCheck')
+				| Check me out
+		button.btn.btn-primary(type='submit') Submit

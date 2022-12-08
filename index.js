@@ -48,11 +48,13 @@ sync();
 const app = express()
 app.set('view engine', 'pug')
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.json());       // to support JSON-encoded bodies
+app.use(express.urlencoded()); // to support URL-encoded bodies
 
 app.get('/', async function (req, res) {
 	// console.log(req);
 	const listings = await Listing.findAll();
-	console.log(listings);
+	// console.log(listings);
 	res.render('home', { title: 'Home', context: listings })
 })
 
@@ -62,8 +64,34 @@ app.get('/login', function (req, res) {
 
 app.get('/listing', async function (req, res) {
 	const listings = await Listing.findAll();
-	console.log(listings);
+	// console.log(listings);
 	res.render('listing', { title: 'Listing', context: listings })
+})
+
+app.route('/listing_create')
+  .get(async(req, res) => {
+    const listings = await Listing.findAll();
+	res.render('listing_create', { title: 'Listing', context: listings })
+  })
+  .post(async(req, res) => {
+	// console.log(req);
+    let title = req.body.title
+	let description = req.body.description
+	let author = 1
+	let price = req.body.price 
+	let deposit = req.body.deposit
+	// console.log(title, description, author, price, deposit);
+
+	const listing = await Listing.create({
+		title: title,
+		description: description,
+		author_id: author,
+		price: price,
+		status: "FOR SALE",
+		deposit: deposit
+	});
+
+	res.redirect('/listing');
 })
 
 app.get('/listing/:id', async function (req, res) {
@@ -73,8 +101,14 @@ app.get('/listing/:id', async function (req, res) {
 		  id: listing_id
 		}
 	  });
-	console.log(listing);
-	res.render('listing_detail', { title: 'Listing', context: listing[0] })
+	//   let id = await listing[0].dataValues.author_id
+	  const user = await User.findAll({
+		  where: {
+			  id: 1
+			}
+		});
+
+	res.render('listing_detail', { title: 'Listing', context: listing[0], user: user[0]  })
 })
 
 app.get('/profile', async function (req, res) {

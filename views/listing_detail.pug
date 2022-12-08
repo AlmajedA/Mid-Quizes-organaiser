@@ -6,7 +6,7 @@ block body
 		- var listing = context.dataValues
 		- var title = listing.title
 		- var description = listing.description
-		- var author = listing.author_id
+		- var author = user.dataValues.full_name
 		- var price = listing.price 
 		- var deposit = listing.deposit
 		- var status = listing.status
@@ -20,7 +20,7 @@ block body
 					p.card-text=description
 					p.card-text= "Price : " + price
 					p.card-text= "Deposit : " + deposit
-					p.card-text= "Date Posted : " + createdAt
+					p.card-text= "Date Posted : " + date
 					p.card-text= "Author : " + author
 					p.card-text= "Status : " + status
 
