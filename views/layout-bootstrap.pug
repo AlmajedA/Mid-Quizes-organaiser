@@ -47,6 +47,8 @@ html
 				const loginButton = document.getElementById('loginMetamask');
 				const userWallet = document.getElementById('connection');
 				const signUp = document.getElementById('signUp');
+				
+			
 
 				function toggleButton() {
 					if (!window.ethereum) {
@@ -57,6 +59,11 @@ html
 					}
 					loginButton.addEventListener('click', loginWithMetaMask);
 					checkConnection();
+					//- this code is just to edit the address in the listing page
+					if (ethereum.selectedAddress != null){
+						const wallet = document.getElementById('from');
+						wallet.innerText = ethereum.selectedAddress}
+					//- end of the code
 				}
 				async function loginWithMetaMask() {
 					const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' }).catch((e) => {
@@ -127,6 +134,8 @@ html
 				else{window.alert("The transaction has been rejected");}
             
 			}
+
+		
 
 
 						
