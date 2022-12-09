@@ -11,20 +11,49 @@ block body
 		- var deposit = listing.deposit
 		- var status = listing.status
 		- var date = listing.createdAt 
+		- var wallet = user.wallet_address
+		
+		
+		.col-md-8
+			.row
+				.col
+					.card.mb-3
+						.card-header User Information
+						ul.list-group.list-group-flush
+							//- li.list-group-item Username: Ammar Almajed
+							li.list-group-item Wallet Adress:
+								p#from= wallet   
+							//- li.list-group-item Phone Number: +966 5x xxx xxxx
+							//- li.list-group-item Ship to : Address here
+			.row 
+				.col
+					.card.mb-3
+						.card-header Seller Information
+						ul.list-group.list-group-flush
+						li.list-group-item= "Author : " + author
+						li.list-group-item Seller Wallet Adress: 
+							p#to 0xba87D84a63A38ece49668b148405e09d8aa3FD8d
+						//- li.list-group-item= "Date Posted : " + date
+			.row 
+				.col 
+					a#purchase.btn.btn-dark.mx-auto(href = '#' style = 'width: 100%; color: white;') Purchase
+			.row 
+				.col 
+					p.pt-5= "Date Posted : " + date
+
+		.col-md-4 
+			.card 
+				img.card-img-top(src="https://www.visible.com/shop/assets/images/shop/catalogue/iPhone_12_mini_PUR_1.jpg")
+				.card-body
+					h5.card-title=title
+					h5#price.card-subtitl= "Price : " + price
+					p.card-text= "Deposit : " + deposit
+					p.card-text=description
+					p.card-text= "Status : " + status
+		
+
 
 		
-		.row.d-md-flex.flex-md-equal.w-100.my-md-3.pl-md-3
-			.col-md.bg-dark.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.text-white.overflow-hidden
-				.my-3.py-3
-					h5.card-title=title 
-					p.card-text=description
-					p.card-text= "Price : " + price
-					p.card-text= "Deposit : " + deposit
-					p.card-text= "Date Posted : " + date
-					p.card-text= "Author : " + author
-					p.card-text= "Status : " + status
-
-				img.img-fluid.m-2(src="https://www.visible.com/shop/assets/images/shop/catalogue/iPhone_12_mini_PUR_1.jpg" alt="" style = 'width: 80%; height: auto; border-radius: 21px 21px 21px 21px;')
 			
 	//- 	.col-md-4.p-3
 	//- 		.card.mx-auto(style = "width: 18rem;")

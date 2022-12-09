@@ -10,6 +10,8 @@ block body
 		.product-device.product-device-2.box-shadow.d-none.d-md-block
 
 	//- Block 1
+	- var images = ["https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4963c483304265.5d38bc944b9e8.jpg","https://image.adsoftheworld.com/1zvfg9ca3kanj68cdkfzodc2tike", "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1280,h_720/https://www.tvadvertmusic.com/wp-content/uploads/iphone-13-commercial-038-music-8211-now-in-green-jungle-kV__iZuxDGE.jpg", "https://creativecan.com/wp-content/uploads/2012/11/samsung-monte.jpg", "https://i2-prod.birminghammail.co.uk/article17720727.ece/ALTERNATES/s615/0_Samsung-Galaxy-Z-Flip-foldable-phone-696x364.jpg", "https://u.osu.edu/iphone/files/2015/03/iPhone-650x400-1x0oxnh.jpg"];
+	- var i = 0
 	each item in context
 		- var listing     = item.dataValues
 		- var title       = listing.title
@@ -19,58 +21,24 @@ block body
 		- var deposit     = listing.deposit
 		- var status      = listing.status
 		- var date        = listing.createdAt
+		
+		
 		.row.d-md-flex.flex-md-equal.w-100.my-md-3.pl-md-3
 			.col-md.bg-dark.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.text-white.overflow-hidden
 				.my-3.py-3
 					h2.display-5=title
 					p.lead=description
 					a.btn.btn-light(href='/listing/' + listing.id) Learn More 
-				img.img-fluid.m-2(src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4963c483304265.5d38bc944b9e8.jpg" alt="" style = 'width: 80%; height: auto; border-radius: 21px 21px 21px 21px;')
+				img.img-fluid.m-2(src=images[i++] alt="" style = 'width: 80%; height: 300; border-radius: 21px 21px 21px 21px;')
 			
 
-	//- 	.col-md.bg-light.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.overflow-hidden
-	//- 		.my-3.p-3
-	//- 			h2.display-5 Another headline 
-	//- 			p.lead Procduct Description 
-	//- 			a.btn.btn-dark(href='#') Learn More 
-	//- 		img.img-fluid(src="https://image.adsoftheworld.com/1zvfg9ca3kanj68cdkfzodc2tike" alt="" style = 'width: 80%; height: 300px; border-radius: 21px 21px 21px 21px;')
+			.col-md.bg-light.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.overflow-hidden
+				.my-3.p-3
+					h2.display-5 Another headline 
+					p.lead Procduct Description 
+					a.btn.btn-dark(href='#') Learn More 
+				img.img-fluid(src=images[i++] alt="" style = 'width: 80%; height: 300px; border-radius: 21px 21px 21px 21px;')
 		
 
-	//- //- Block 2
-	//- .row.d-md-flex.flex-md-equal.w-100.my-md-3.pl-md-3
-	//- 	.col-md.bg-dark.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.text-white.overflow-hidden
-	//- 		.my-3.py-3
-	//- 			h2.display-5 Another headline 
-	//- 			p.lead Procduct Description 
-	//- 			a.btn.btn-light(href='#') Learn More 
-	//- 		img.img-fluid.m-2(src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1280,h_720/https://www.tvadvertmusic.com/wp-content/uploads/iphone-13-commercial-038-music-8211-now-in-green-jungle-kV__iZuxDGE.jpg" alt="" style = 'width: 80%; height: 300px; border-radius: 21px 21px 21px 21px;')
-
-	//- 	.col-md.bg-primary.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.text-white.overflow-hidden
-	//- 		.my-3.p-3
-	//- 			h2.display-5 Another headline 
-	//- 			p.lead Procduct Description 
-	//- 			a.btn.btn-light(href='#') Learn More 
-	//- 		img.img-fluid.m-2(src="https://creativecan.com/wp-content/uploads/2012/11/samsung-monte.jpg" alt="" style = 'width: 80%; height: 300px; border-radius: 21px 21px 21px 21px;')
-
-
-	//- //- Block 3
-	//- .row.d-md-flex.flex-md-equal.w-100.my-md-3.pl-md-3
-	//- 	.col-md.bg-dark.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.text-white.overflow-hidden
-	//- 		.my-3.py-3
-	//- 			h2.display-5 Another headline 
-	//- 			p.lead Procduct Description 
-	//- 			a.btn.btn-light(href='#') Learn More 
-	//- 		img.img-fluid.m-2(src="https://i2-prod.birminghammail.co.uk/article17720727.ece/ALTERNATES/s615/0_Samsung-Galaxy-Z-Flip-foldable-phone-696x364.jpg" alt="" style = 'width: 80%; height: 300px; border-radius: 21px 21px 21px 21px;')
-
-	//- 	.col-md.bg-light.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.overflow-hidden
-	//- 		.my-3.p-3
-	//- 			h2.display-5 Another headline 
-	//- 			p.lead Procduct Description 
-	//- 			a.btn.btn-dark(href='#') Learn More 
-	//- 		img.img-fluid.m-2(src="https://u.osu.edu/iphone/files/2015/03/iPhone-650x400-1x0oxnh.jpg" alt="" style = 'width: 80%; height: 300px; border-radius: 21px 21px 21px 21px;')
-		
-	
-
-		
 
 			
