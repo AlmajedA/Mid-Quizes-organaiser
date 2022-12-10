@@ -7,6 +7,7 @@ const db = require("./config/db");
 const User = require("./models/user");
 const Listing = require("./models/listing");
 const Transaction = require("./models/transaction");
+const { randomInt } = require('crypto');
 
 
 // start db
@@ -21,24 +22,25 @@ db.authenticate()
 async function sync() {
 	await db.sync({ force: true });
 	const jane = await User.create({ username: "janeDo", full_name: "Jane Doe", phone_number: "02065065160", address: "Seoul, Korea", wallet_address: "0xba87D84a63A38ece49668b148405e09d8aa3FD8d" });
+	const joe = await User.create({ username: "joeMama", full_name: "Joe Malone", phone_number: "02062565160", address: "Daejeon, Korea", wallet_address: "0x6f0849e4854fdb3fff76e2ad8c15ef5307184dfe" });
 	
 	const listing1 = await Listing.create({
 		title: 
 			"TEST PRODUCT 1",
 		description: "THIS IS A TEST PRODUCT MADE FOR TESTING OUR TESTS. TEST ALL THE TESTS",
 		author_id: 1,
-		price: 2500,
+		price: 0.02,
 		status: "FOR SALE",
-		deposit: 25
+		deposit: 0.0001
 	});
 	const listing2 = await Listing.create({
 		title: 
 			"TEST PRODUCT 2",
 		description: "THIS IS A TEST PRODUCT MADE FOR TESTING OUR TESTS. TEST ALL THE TESTS",
-		author_id: 1,
-		price: 5400,
+		author_id: 2,
+		price: 0.1,
 		status: "FOR SALE",
-		deposit: 26
+		deposit: 0.00005
 	});
 	
 
@@ -77,7 +79,7 @@ app.route('/listing_create')
 	// console.log(req);
     let title = req.body.title
 	let description = req.body.description
-	let author = 1
+	let author = 2
 	let price = req.body.price 
 	let deposit = req.body.deposit
 	// console.log(title, description, author, price, deposit);
@@ -96,6 +98,7 @@ app.route('/listing_create')
 
 app.get('/listing/:id', async function (req, res) {
 	let listing_id = req.params.id;
+	let user_id = randomInt(1, 3);
 	const listing = await Listing.findAll({
 		where: {
 		  id: listing_id
@@ -104,7 +107,7 @@ app.get('/listing/:id', async function (req, res) {
 	//   let id = await listing[0].dataValues.author_id
 	  const user = await User.findAll({
 		  where: {
-			  id: 1
+			  id: user_id
 			}
 		});
 

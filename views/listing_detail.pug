@@ -32,7 +32,7 @@ block body
 						ul.list-group.list-group-flush
 						li.list-group-item= "Author : " + author
 						li.list-group-item Seller Wallet Adress: 
-							p#to 0xba87D84a63A38ece49668b148405e09d8aa3FD8d
+							p#to=wallet
 						//- li.list-group-item= "Date Posted : " + date
 			.row 
 				.col 
@@ -46,12 +46,14 @@ block body
 				img.card-img-top(src="https://www.visible.com/shop/assets/images/shop/catalogue/iPhone_12_mini_PUR_1.jpg")
 				.card-body
 					h5.card-title=title
-					h5#price.card-subtitl= "Price : " + price
-					p.card-text= "Deposit : " + deposit
+					h5#price.card-subtitl Price: #[span#price=price] Eth
+					p.card-text= "Deposit : " + deposit + " ETH"
 					p.card-text=description
 					p.card-text= "Status : " + status
 		
-
+	script.
+		let user_wallet = document.getElementById("from");
+		user_wallet.innerText = ethereum.selectedAddress;
 
 		
 			

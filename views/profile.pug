@@ -15,14 +15,14 @@ block body
 			img.rounded-circle.img-fluid(src='https://xsgames.co/randomusers/avatar.php?g=pixel' style="height: 100%; width: 100%;")
 		.col-md-9.align-self-center
 			h2.text-md-left= fullname + ' (' + username + ')'
-			p(style ='font-size: 1.5em')= "Wallet Address : " + wallet 
+			p(style ='font-size: 1.5em')  Wallet Address : 
+				span#wallet=wallet 
 
 			.row 
 				.col-md 
 					p= "Address: " + address 
 				.col-md 
 					p= "Phone Number: " + phone
-
 
 	
 			

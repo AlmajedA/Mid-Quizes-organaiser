@@ -2,10 +2,10 @@ extends layout-bootstrap
 
 block body
 	
-	.position-relative.overflow-hidden.p-3.p-md-5.m-md-3.text-center.bg-light
+	.position-relative.overflow-hidden.p-3.p-md-5.m-md-3.text-center.bg-light.rounded-lg
 		.col-md-5.p-lg-5.mx-auto.my-5
 			h1.display-4.font-weight-normal Welcome to Dimpl
-			p.lead.font-weight-normal Description of our website 
+			p.lead.font-weight-normal Buy without fear!
 		.product-device.box-shadow.d-none.d-md-block
 		.product-device.product-device-2.box-shadow.d-none.d-md-block
 
@@ -24,21 +24,10 @@ block body
 		
 		
 		.row.d-md-flex.flex-md-equal.w-100.my-md-3.pl-md-3
-			.col-md.bg-dark.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.text-white.overflow-hidden
+			.col-md.bg-dark.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.text-white.overflow-hidden.rounded-lg
 				.my-3.py-3
 					h2.display-5=title
 					p.lead=description
 					a.btn.btn-light(href='/listing/' + listing.id) Learn More 
-				img.img-fluid.m-2(src=images[i++] alt="" style = 'width: 80%; height: 300; border-radius: 21px 21px 21px 21px;')
-			
-
-			.col-md.bg-light.mr-md-3.pt-3.px-3.pt-md-5.px-md-5.text-center.overflow-hidden
-				.my-3.p-3
-					h2.display-5 Another headline 
-					p.lead Procduct Description 
-					a.btn.btn-dark(href='#') Learn More 
-				img.img-fluid(src=images[i++] alt="" style = 'width: 80%; height: 300px; border-radius: 21px 21px 21px 21px;')
-		
-
-
+				img.img-fluid.m-2(src=images[i++] alt="" style = 'width: 80%; height: auto; border-radius: 21px 21px 21px 21px;')
 			
