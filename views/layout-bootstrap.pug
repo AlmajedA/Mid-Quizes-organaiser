@@ -107,8 +107,8 @@ html
 
 			async function sendTransaction(event){
 				const priceString = document.getElementById('price').innerText;
-				const priceInt = priceString.match(/\d/g).join("");
-				const amount = parseInt(priceInt) * 1000000000000000000;
+				const priceInt = priceString.match(/[+-]?\d+(\.\d+)?/g).join("");
+				const amount = parseFloat(priceInt) * 1000000000000000000;
 				const sendTo = document.getElementById('to').innerText;
 				const hexString = amount.toString(16);
 				let confirm = false;
